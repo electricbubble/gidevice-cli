@@ -35,6 +35,7 @@ var xctestCmd = &cobra.Command{
 			for s := range out {
 				fmt.Print(s)
 			}
+			done <- os.Interrupt
 		}()
 
 		<-done
