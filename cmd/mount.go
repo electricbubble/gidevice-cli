@@ -82,7 +82,7 @@ var mountCmd = &cobra.Command{
 func init() {
 	rootCmd.AddCommand(mountCmd)
 
-	mountCmd.Flags().BoolP("list", "l", true, "DeveloperDiskImage list")
+	mountCmd.Flags().BoolP("list", "l", false, "DeveloperDiskImage list")
 
 	mountCmd.Flags().StringP("udid", "u", "", "Device uuid")
 	mountCmd.Flags().StringP("dir", "d", "", "DeveloperDiskImage directory")
