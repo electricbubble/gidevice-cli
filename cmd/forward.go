@@ -65,7 +65,6 @@ var forwardCmd = &cobra.Command{
 		<-done
 		fmt.Println()
 		log.Println("DONE")
-		fmt.Println("forward called")
 	},
 }
 

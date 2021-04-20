@@ -6,6 +6,7 @@ import (
 	giDevice "github.com/electricbubble/gidevice"
 	"github.com/electricbubble/gidevice-cli/internal"
 	"github.com/spf13/cobra"
+	"strings"
 )
 
 // listCmd represents the list command
@@ -23,8 +24,14 @@ var listCmd = &cobra.Command{
 		for _, d := range devices {
 			devInfo, err := d.DeviceInfo()
 			if err != nil {
-				outErr.WriteString(fmt.Sprintf("%s: %s\n", d.Properties().SerialNumber, err))
 				devInfo = new(giDevice.DeviceInfo)
+				if strings.HasSuffix(err.Error(), "InvalidService") {
+					outErr.WriteString(
+						fmt.Sprintf("%s: this device may need to be mounted first\n", d.Properties().SerialNumber),
+					)
+				} else {
+					outErr.WriteString(fmt.Sprintf("%s: %s\n", d.Properties().SerialNumber, err))
+				}
 			}
 			fmt.Println(d.Properties().SerialNumber, devInfo.DisplayName)
 		}

@@ -56,7 +56,7 @@ var mountCmd = &cobra.Command{
 			if len(args) < 2 {
 				internal.ErrorExit(errors.New("required parameter missing 'dmg' & 'signature'"))
 			}
-			dmgPath, signaturePath = args[1], args[2]
+			dmgPath, signaturePath = args[0], args[1]
 		}
 
 		if len(dmgPath) == 0 {
