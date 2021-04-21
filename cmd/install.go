@@ -4,18 +4,19 @@ import (
 	"errors"
 	"fmt"
 	"github.com/electricbubble/gidevice-cli/internal"
+
 	"github.com/spf13/cobra"
 )
 
-// launchCmd represents the launch command
-var launchCmd = &cobra.Command{
-	Use:   "launch",
-	Short: "Launch application",
+// installCmd represents the install command
+var installCmd = &cobra.Command{
+	Use:   "install",
+	Short: "A brief description of your command",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
-			internal.ErrorExit(errors.New("required parameter missing 'bundleID'"))
+			internal.ErrorExit(errors.New("required parameter missing 'ipaPath'"))
 		}
-		bundleID := args[0]
+		ipaPath := args[0]
 		udid, _ := cmd.Flags().GetString("udid")
 
 		d, err := internal.GetDeviceFromCommand(udid)
@@ -25,15 +26,15 @@ var launchCmd = &cobra.Command{
 			internal.ErrorExit(fmt.Errorf("%s: may need to mount Developer Disk Image first", d.Properties().SerialNumber))
 		}
 
-		pid, err := d.AppLaunch(bundleID)
+		err = d.AppInstall(ipaPath)
 		internal.ErrorExit(err)
 
-		fmt.Printf("pid: %d\tbundleID: %s\n", pid, bundleID)
+		fmt.Println("successful install")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(launchCmd)
+	rootCmd.AddCommand(installCmd)
 
-	launchCmd.Flags().StringP("udid", "u", "", "Device uuid")
+	installCmd.Flags().StringP("udid", "u", "", "Device uuid")
 }

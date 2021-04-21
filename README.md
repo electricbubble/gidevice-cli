@@ -16,6 +16,7 @@ $ gidevice list
 
 ```shell
 $ gidevice mount -l
+# gidevice mount -l -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
 $ gidevice mount -d=/path/.../DeviceSupport/14.4/
 $ gidevice mount /path/.../DeviceSupport/14.4/DeveloperDiskImage.dmg /path/.../DeviceSupport/14.4/DeveloperDiskImage.dmg.signature
 ```
@@ -24,8 +25,13 @@ $ gidevice mount /path/.../DeviceSupport/14.4/DeveloperDiskImage.dmg /path/.../D
 
 ```shell
 $ gidevice applist
+$ gidevice applist -t=user -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
+
 $ gidevice launch com.apple.Preferences
 $ gidevice kill com.apple.Preferences
+
+$ gidevice install /path/.../WebDriverAgentRunner-Runner.ipa
+$ gidevice uninstall com.leixipaopao.WebDriverAgentRunner.xctrunner
 ```
 
 #### Forward
@@ -33,7 +39,7 @@ $ gidevice kill com.apple.Preferences
 ```shell
 # Default port local=8100 remote=8100
 $ gidevice forward
-$ gidevice forward -l=9100 -r=9100
+$ gidevice forward -l=9100 -r=9100 -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
 ```
 
 #### XCTest

@@ -23,6 +23,15 @@ func ErrorExit(err error) {
 	}
 }
 
+func IsDeveloper(d giDevice.Device) bool {
+	imageSignatures, err := d.Images()
+	ErrorExit(err)
+	if len(imageSignatures) != 0 {
+		return true
+	}
+	return false
+}
+
 func getFirstDevice() (d giDevice.Device, err error) {
 	var devices []giDevice.Device
 	if devices, err = _devices(); err != nil {

@@ -4,13 +4,14 @@ import (
 	"errors"
 	"fmt"
 	"github.com/electricbubble/gidevice-cli/internal"
+
 	"github.com/spf13/cobra"
 )
 
-// launchCmd represents the launch command
-var launchCmd = &cobra.Command{
-	Use:   "launch",
-	Short: "Launch application",
+// uninstallCmd represents the uninstall command
+var uninstallCmd = &cobra.Command{
+	Use:   "uninstall",
+	Short: "A brief description of your command",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			internal.ErrorExit(errors.New("required parameter missing 'bundleID'"))
@@ -25,15 +26,15 @@ var launchCmd = &cobra.Command{
 			internal.ErrorExit(fmt.Errorf("%s: may need to mount Developer Disk Image first", d.Properties().SerialNumber))
 		}
 
-		pid, err := d.AppLaunch(bundleID)
+		err = d.AppUninstall(bundleID)
 		internal.ErrorExit(err)
 
-		fmt.Printf("pid: %d\tbundleID: %s\n", pid, bundleID)
+		fmt.Println("successful uninstall")
 	},
 }
 
 func init() {
-	rootCmd.AddCommand(launchCmd)
+	rootCmd.AddCommand(uninstallCmd)
 
-	launchCmd.Flags().StringP("udid", "u", "", "Device uuid")
+	uninstallCmd.Flags().StringP("udid", "u", "", "Device uuid")
 }

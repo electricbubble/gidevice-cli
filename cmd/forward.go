@@ -41,6 +41,8 @@ var forwardCmd = &cobra.Command{
 					log.Println("accept:", err)
 				}
 
+				fmt.Println("accept", accept.RemoteAddr())
+
 				rInnerConn, err := d.NewConnect(remotePort)
 				internal.ErrorExit(err)
 
