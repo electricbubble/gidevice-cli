@@ -3,23 +3,23 @@ before:
     - go mod tidy
 
 builds:
-  id: "gidevice-cli"
-  main: .
-  binary: gidevice
+  - id: "gidevice-cli"
+    main: .
+    binary: gidevice
 
-  goos:
-    - windows
-    - freebsd
-    - openbsd
-    - linux
-    - darwin
+    goos:
+      - windows
+      - freebsd
+      - openbsd
+      - linux
+      - darwin
 
-  goarm:
-    - 7
+    goarm:
+      - 7
 
-  ignore:
-    - goos: darwin
-      goarch: 386
+    ignore:
+      - goos: darwin
+        goarch: 386
 
 archives:
   - id: "gidevice-cli"
