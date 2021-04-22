@@ -20,6 +20,9 @@ builds:
     ignore:
       - goos: darwin
         goarch: 386
+      - goos: freebsd
+        goarch: arm64
+
 
 archives:
   - id: "gidevice-cli"
