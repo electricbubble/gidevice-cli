@@ -13,3 +13,17 @@ builds:
     - openbsd
     - linux
     - darwin
+
+  goarm:
+    - 7
+
+  ignore:
+    - goos: darwin
+      goarch: 386
+
+archives:
+  - id: "gidevice-cli"
+    format: tar.gz
+    format_overrides:
+      - goos: windows
+        format: zip
