@@ -1,0 +1,15 @@
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  id: "gidevice-cli"
+  main: .
+  binary: gidevice
+
+  goos:
+    - windows
+    - freebsd
+    - openbsd
+    - linux
+    - darwin
