@@ -5,6 +5,7 @@ import (
 	giDevice "github.com/electricbubble/gidevice"
 	"log"
 	"os"
+	"strings"
 )
 
 func GetDeviceFromCommand(udid string) (d giDevice.Device, err error) {
@@ -18,7 +19,11 @@ func GetDeviceFromCommand(udid string) (d giDevice.Device, err error) {
 
 func ErrorExit(err error) {
 	if err != nil {
-		log.Println(err)
+		if strings.HasSuffix(err.Error(), "InvalidService") {
+			log.Println("may need to mount Developer Disk Image first `gidevice mount -h`")
+		} else {
+			log.Println(err)
+		}
 		os.Exit(0)
 	}
 }

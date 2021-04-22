@@ -25,13 +25,15 @@ $ gidevice mount /path/.../DeviceSupport/14.4/DeveloperDiskImage.dmg /path/.../D
 
 ```shell
 $ gidevice applist
-$ gidevice applist -t=user -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
+$ gidevice applist -t=all -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
 
 $ gidevice launch com.apple.Preferences
 $ gidevice kill com.apple.Preferences
 
 $ gidevice install /path/.../WebDriverAgentRunner-Runner.ipa
 $ gidevice uninstall com.leixipaopao.WebDriverAgentRunner.xctrunner
+
+$ gidevice ps
 ```
 
 #### Forward

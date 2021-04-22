@@ -19,22 +19,12 @@ var applistCmd = &cobra.Command{
 		d, err := internal.GetDeviceFromCommand(udid)
 		internal.ErrorExit(err)
 
-		if !internal.IsDeveloper(d) {
-			internal.ErrorExit(fmt.Errorf("%s: may need to mount Developer Disk Image first", d.Properties().SerialNumber))
-		}
-
 		apps, err := d.AppList()
 		internal.ErrorExit(err)
 
 		for _, app := range apps {
-			if appType == "all" {
-				fmt.Println(app.Type, app.DisplayName, app.CFBundleIdentifier, app.Version)
-				continue
-			}
-
-			if appType == strings.ToLower(app.Type) {
-				fmt.Println(app.Type, app.DisplayName, app.CFBundleIdentifier, app.Version)
-				continue
+			if appType == "all" || appType == strings.ToLower(app.Type) {
+				fmt.Printf("%s %s %s %s\n", app.Type, app.DisplayName, app.CFBundleIdentifier, app.Version)
 			}
 		}
 	},
@@ -44,5 +34,5 @@ func init() {
 	rootCmd.AddCommand(applistCmd)
 
 	applistCmd.Flags().StringP("udid", "u", "", "Device uuid")
-	applistCmd.Flags().StringP("type", "t", "all", "Application Type")
+	applistCmd.Flags().StringP("type", "t", "user", "Application Type")
 }

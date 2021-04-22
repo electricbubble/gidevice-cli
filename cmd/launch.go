@@ -21,10 +21,6 @@ var launchCmd = &cobra.Command{
 		d, err := internal.GetDeviceFromCommand(udid)
 		internal.ErrorExit(err)
 
-		if !internal.IsDeveloper(d) {
-			internal.ErrorExit(fmt.Errorf("%s: may need to mount Developer Disk Image first", d.Properties().SerialNumber))
-		}
-
 		pid, err := d.AppLaunch(bundleID)
 		internal.ErrorExit(err)
 
