@@ -34,7 +34,7 @@ var syslogCmd = &cobra.Command{
 		}()
 
 		<-done
-		_ = d.SyslogStop()
+		d.SyslogStop()
 		fmt.Println()
 		log.Println("DONE")
 	},
