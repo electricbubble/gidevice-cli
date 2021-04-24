@@ -50,6 +50,12 @@ $ gidevice forward -l=9100 -r=9100 -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
 $ gidevice xctest com.leixipaopao.WebDriverAgentRunner.xctrunner
 ```
 
+#### Syslog
+
+```shell
+$ gidevice syslog
+```
+
 ## Thanks
 
 | |About|
