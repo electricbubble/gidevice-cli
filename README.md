@@ -56,6 +56,12 @@ $ gidevice xctest com.leixipaopao.WebDriverAgentRunner.xctrunner
 $ gidevice syslog
 ```
 
+#### CrashReport
+
+```shell
+$ gidevice crashreport /path/.../local/dir/ -e -k
+```
+
 ## Thanks
 
 | |About|
