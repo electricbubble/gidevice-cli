@@ -8,6 +8,7 @@ import (
 	"log"
 	"os"
 	"os/signal"
+	"strings"
 )
 
 // xctestCmd represents the xctest command
@@ -20,6 +21,7 @@ var xctestCmd = &cobra.Command{
 		}
 		bundleID := args[0]
 		udid, _ := cmd.Flags().GetString("udid")
+		contains, _ := cmd.Flags().GetStringArray("contains")
 
 		d, err := internal.GetDeviceFromCommand(udid)
 		internal.ErrorExit(err)
@@ -33,7 +35,17 @@ var xctestCmd = &cobra.Command{
 
 		go func() {
 			for s := range out {
-				fmt.Print(s)
+				// show all
+				if len(contains) == 0 {
+					fmt.Print(s)
+					continue
+				}
+
+				for _, sub := range contains {
+					if strings.Contains(s, sub) {
+						fmt.Print(s)
+					}
+				}
 			}
 			done <- os.Interrupt
 		}()
@@ -47,6 +59,8 @@ var xctestCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(xctestCmd)
+
+	xctestCmd.Flags().StringArrayP("contains", "c", []string{}, "Only the logs contained in the text are displayed")
 
 	xctestCmd.Flags().StringP("udid", "u", "", "Device uuid")
 }

@@ -48,6 +48,8 @@ $ gidevice forward -l=9100 -r=9100 -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
 
 ```shell
 $ gidevice xctest com.leixipaopao.WebDriverAgentRunner.xctrunner
+# Only the logs contained in the text are displayed
+$ gidevice xctest com.leixipaopao.WebDriverAgentRunner.xctrunner --contains="ServerURLHere->" --contains="Running tests..." --contains="Built at"
 ```
 
 #### Syslog
