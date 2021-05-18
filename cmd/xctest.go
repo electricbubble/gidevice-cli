@@ -3,6 +3,7 @@ package cmd
 import (
 	"errors"
 	"fmt"
+	giDevice "github.com/electricbubble/gidevice"
 	"github.com/electricbubble/gidevice-cli/internal"
 	"github.com/spf13/cobra"
 	"log"
@@ -23,10 +24,20 @@ var xctestCmd = &cobra.Command{
 		udid, _ := cmd.Flags().GetString("udid")
 		contains, _ := cmd.Flags().GetStringArray("contains")
 
+		rawEnv, _ := cmd.Flags().GetStringArray("env")
+		appEnv := make(map[string]interface{})
+		if len(rawEnv) != 0 {
+			for _, pairingValue := range rawEnv {
+				kv := strings.Split(pairingValue, "=")
+				appEnv[kv[0]] = kv[1]
+			}
+			log.Println("Process environment:", appEnv)
+		}
+
 		d, err := internal.GetDeviceFromCommand(udid)
 		internal.ErrorExit(err)
 
-		out, cancel, err := d.XCTest(bundleID)
+		out, cancel, err := d.XCTest(bundleID, giDevice.WithXCTestEnv(appEnv))
 		internal.ErrorExit(err)
 
 		done := make(chan os.Signal, 1)
@@ -61,6 +72,7 @@ func init() {
 	rootCmd.AddCommand(xctestCmd)
 
 	xctestCmd.Flags().StringArrayP("contains", "c", []string{}, "Only the logs contained in the text are displayed")
+	xctestCmd.Flags().StringArrayP("env", "e", []string{}, "Process environment")
 
 	xctestCmd.Flags().StringP("udid", "u", "", "Device uuid")
 }

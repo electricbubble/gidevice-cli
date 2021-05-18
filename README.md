@@ -50,6 +50,7 @@ $ gidevice forward -l=9100 -r=9100 -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7
 $ gidevice xctest com.leixipaopao.WebDriverAgentRunner.xctrunner
 # Only the logs contained in the text are displayed
 $ gidevice xctest com.leixipaopao.WebDriverAgentRunner.xctrunner --contains="ServerURLHere->" --contains="Running tests..." --contains="Built at"
+$ gidevice xctest com.leixipaopao.WebDriverAgentRunner.xctrunner --env=USE_PORT=8200 --env=MJPEG_SERVER_PORT=9200
 ```
 
 #### Syslog
