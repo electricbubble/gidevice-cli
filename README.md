@@ -10,6 +10,7 @@ https://github.com/electricbubble/gidevice-cli/releases
 
 ```shell
 $ gidevice list
+$ gidevice listen
 ```
 
 #### DeveloperDiskImage
