@@ -66,6 +66,13 @@ $ gidevice syslog
 $ gidevice crashreport /path/.../local/dir/ -e -k
 ```
 
+#### Screenshot
+
+```shell
+$ gidevice screenshot
+$ gidevice screenshot -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7 -o=/path/..../screenshot.png
+```
+
 ## Thanks
 
 | |About|
