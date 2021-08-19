@@ -73,6 +73,15 @@ $ gidevice screenshot
 $ gidevice screenshot -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7 -o=/path/..../screenshot.png
 ```
 
+
+#### DeviceInfo
+
+```shell
+$ gidevice info
+$ gidevice info -u=39xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx7 --json=true   # for json format output
+```
+
+
 ## Thanks
 
 | |About|
