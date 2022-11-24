@@ -2,10 +2,11 @@ package internal
 
 import (
 	"errors"
-	giDevice "github.com/electricbubble/gidevice"
 	"log"
 	"os"
 	"strings"
+
+	giDevice "github.com/electricbubble/gidevice"
 )
 
 func GetDeviceFromCommand(udid string) (d giDevice.Device, err error) {
@@ -24,7 +25,7 @@ func ErrorExit(err error) {
 		} else {
 			log.Println(err)
 		}
-		os.Exit(0)
+		os.Exit(1)
 	}
 }
 
