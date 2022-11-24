@@ -1,20 +1,23 @@
 package cmd
 
 import (
-	"errors"
 	"fmt"
+
 	"github.com/electricbubble/gidevice-cli/internal"
 	"github.com/spf13/cobra"
 )
 
 // launchCmd represents the launch command
 var launchCmd = &cobra.Command{
-	Use:   "launch",
+	Use:   "launch [-u udid] bundleID",
 	Short: "Launch application",
-	Run: func(cmd *cobra.Command, args []string) {
-		if len(args) == 0 {
-			internal.ErrorExit(errors.New("required parameter missing 'bundleID'"))
+	Args: func(cmd *cobra.Command, args []string) error {
+		if len(args) != 1 {
+			return fmt.Errorf("required parameter missing 'bundleID'")
 		}
+		return nil
+	},
+	Run: func(cmd *cobra.Command, args []string) {
 		bundleID := args[0]
 		udid, _ := cmd.Flags().GetString("udid")
 
